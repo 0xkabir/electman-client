@@ -5,7 +5,7 @@ import logo from "./logo.png";
 
 const Header = () => {
   return (
-    <Navbar fluid={true} rounded={true}>
+    <Navbar fluid={true} rounded={true} className='sticky top-0 shadow-md z-10'>
       <Link to='/'>
         <div className="flex items-center">
             <img src={logo} alt="" className="h-6"/>
