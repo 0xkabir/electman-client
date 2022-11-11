@@ -6,7 +6,7 @@ import CarouselSlider from "./Carousel/CarouselSlider";
 const Home = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/services?count=3")
+    fetch("https://electman-server.vercel.app/services?count=3")
       .then((response) => response.json())
       .then((data) => setServices(data));
   }, []);

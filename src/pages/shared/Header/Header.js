@@ -6,6 +6,7 @@ import logo from "./logo.png";
 
 const Header = () => {
   const { user, userLogOut } = useContext(AuthContext);
+  console.log(user)
   const handleLogOut = () => {
     userLogOut()
     .then(()=>{
@@ -55,9 +56,31 @@ const Header = () => {
           Blogs
         </NavLink>
         {user?.uid ? (
-          <Link className="text-orange-600 hover:text-orange-700 text-right font-medium" onClick={handleLogOut}>
+          <>
+          <NavLink
+                to="/my-reviews"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-medium text-orange-600 text-right"
+                    : "text-right selection:font-medium hover:text-orange-600"
+                }
+              >
+                My Reviews
+              </NavLink>
+          <NavLink
+                to="/add-service"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-medium text-orange-600 text-right"
+                    : "text-right selection:font-medium hover:text-orange-600"
+                }
+              >
+                Add Service
+              </NavLink>
+            <Link className="text-orange-600 hover:text-orange-700 text-right font-medium" onClick={handleLogOut}>
             Log Out
           </Link>
+          </>
         ) : (
             <>
               <NavLink

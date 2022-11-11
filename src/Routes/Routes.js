@@ -16,10 +16,10 @@ const routes = createBrowserRouter([
             path: '/home', element: <Home/>
         },
         {
-            path: '/services', element: <Services/>, loader: ()=>fetch('http://localhost:5000/services')
+            path: '/services', element: <Services/>, loader: ()=>fetch('https://electman-server.vercel.app/services')
         },
         {
-            path: '/services/:id', element: <Service/>, loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+            path: '/services/:id', element: <Service/>, loader: ({params})=>fetch(`https://electman-server.vercel.app/services/${params.id}`)
         },
         {
             path: '/blogs', element:<Blogs/>
