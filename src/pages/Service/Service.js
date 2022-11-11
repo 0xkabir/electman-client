@@ -1,41 +1,50 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import ReviewItem from "./ReviewItem";
 
 const Service = () => {
-
   const { user } = useContext(AuthContext);
   const { _id, name, imgurl, price, intro, description } = useLoaderData();
-  const [reviews, setReviews] = useState([])
-    useEffect(()=>{
-        fetch(`http://localhost:5000/reviews/${_id}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setReviews(data)
-        })
-    },[_id])
-  const addReview = event => {
-    event.preventDefault()
-    const form = event.target
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews/${_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setReviews(data);
+      });
+  }, [_id]);
+  const addReview = (event) => {
+    event.preventDefault();
+    const form = event.target;
     const review = form.review.value;
     const reviewObj = {
-        userId: user.uid,
-        userName: user.displayName,
-        serviceId: _id,
-        review: review
-    }
-    console.log(reviewObj)
-    fetch('http://localhost:5000/add-review', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body:JSON.stringify(reviewObj)
+      userId: user.uid,
+      userName: user.displayName,
+      imgURL: user.photoURL,
+      serviceId: _id,
+      review: review,
+    };
+    console.log(reviewObj);
+    fetch("http://localhost:5000/add-review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviewObj),
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-  }
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("review added");
+          form.reset();
+          const newReviews = [reviewObj, ...reviews];
+          setReviews(newReviews);
+        }
+      });
+  };
   return (
     <div>
       <div className="p-5 md:p-10 ">
@@ -50,26 +59,34 @@ const Service = () => {
         </div>
       </div>
       <div>
-        <h2 className="text-3xl font-medium">Client Reviews</h2>
-        {user?.uid ? (
-          <form onSubmit={addReview}>
-            <textarea
-              name="review"
-              className="w-full border-orange-600 block mb-5 md:w-1/2"
-            ></textarea>
-            <button type="submit" className="px-4 py-1 border rounded font-medium border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-              Add Review
-            </button>
-          </form>
-        ) : (
-          <h2 className="text-xl font-medium">
-            Please{" "}
-            <Link to="/login" className="text-orange-600">
-              Login
-            </Link>{" "}
-            to add review
-          </h2>
-        )}
+        <div className="w-11/12 md:w-1/2 mx-auto">
+          <h2 className="text-3xl font-medium">Client Reviews</h2>
+          {user?.uid ? (
+            <form onSubmit={addReview}>
+              <textarea
+                name="review"
+                className="w-full border-orange-600 block mb-5 md:w-1/2"
+              ></textarea>
+              <button
+                type="submit"
+                className="px-4 py-1 border rounded font-medium border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
+              >
+                Add Review
+              </button>
+            </form>
+          ) : (
+            <h2 className="text-xl font-medium">
+              Please{" "}
+              <Link to="/login" className="text-orange-600">
+                Login
+              </Link>{" "}
+              to add review
+            </h2>
+          )}
+          {reviews.map((reviewItem) => (
+            <ReviewItem key={reviewItem._id} reviewItem={reviewItem} />
+          ))}
+        </div>
       </div>
     </div>
   );
