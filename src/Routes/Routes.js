@@ -4,8 +4,8 @@ import Blogs from "../pages/Blogs/Blogs";
 import Home from "../pages/Home/Home";
 import Service from "../pages/Service/Service";
 import Services from "../pages/Services/Services";
-import Login from "../pages/shared/Login/Login";
-import SignUp from "../pages/shared/SignUp/SignUp";
+import Login from "../pages/Login/Login";
+import Register from '../pages/Register/Register'
 
 const routes = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
@@ -25,11 +25,12 @@ const routes = createBrowserRouter([
             path: '/blogs', element:<Blogs/>
         },
         {
-            path: '/login', element: <Login/>
+            path: '/login', element: <Login></Login>
         },
         {
-            path: '/signup', element: <SignUp/>
+            path: '/register', element: <Register></Register>
         }
+        
     ]}
 ])
 
