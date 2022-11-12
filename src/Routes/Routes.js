@@ -6,6 +6,7 @@ import Service from "../pages/Service/Service";
 import Services from "../pages/Services/Services";
 import Login from "../pages/Login/Login";
 import Register from '../pages/Register/Register'
+import MyReviews from "../pages/MyReviews/MyReviews";
 
 const routes = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
@@ -20,6 +21,9 @@ const routes = createBrowserRouter([
         },
         {
             path: '/services/:id', element: <Service/>, loader: ({params})=>fetch(`https://electman-server.vercel.app/services/${params.id}`)
+        },
+        {
+            path: '/my-reviews', element: <MyReviews/>
         },
         {
             path: '/blogs', element:<Blogs/>
