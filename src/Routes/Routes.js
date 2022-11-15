@@ -7,6 +7,7 @@ import Services from "../pages/Services/Services";
 import Login from "../pages/Login/Login";
 import Register from '../pages/Register/Register'
 import MyReviews from "../pages/MyReviews/MyReviews";
+import AddService from "../pages/AddService/AddService";
 
 const routes = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
@@ -24,6 +25,9 @@ const routes = createBrowserRouter([
         },
         {
             path: '/my-reviews', element: <MyReviews/>
+        },
+        {
+            path: '/add-service', element: <AddService/>
         },
         {
             path: '/blogs', element:<Blogs/>
