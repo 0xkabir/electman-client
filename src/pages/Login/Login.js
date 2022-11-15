@@ -25,9 +25,6 @@ const Login = () => {
                 setUser(user)
                 navigate(from, { replace: true });
             }
-            else{
-                toast.error('Your email is not verified')
-            }
         })
         .catch(error => {
             const message = error.message.slice(22, -2)

@@ -20,38 +20,43 @@ const Service = () => {
     event.preventDefault();
     const form = event.target;
     const review = form.review.value;
-    const reviewObj = {
-      time: Date.now(),
-      userId: user.uid,
-      userName: user.displayName,
-      imgURL: user.photoURL,
-      serviceId: _id,
-      serviceName: name,
-      review: review,
-    };
-    console.log(reviewObj);
-    fetch("http://localhost:5000/add-review", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(reviewObj),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("review added");
-          form.reset();
-          const newReviews = [reviewObj, ...reviews];
-          setReviews(newReviews);
-        }
-      });
+    if(review.length !== 0){
+      const reviewObj = {
+        time: Date.now(),
+        userId: user.uid,
+        userName: user.displayName,
+        imgURL: user.photoURL,
+        serviceId: _id,
+        serviceName: name,
+        review: review,
+      };
+      console.log(reviewObj);
+      fetch("http://localhost:5000/add-review", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(reviewObj),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("review added");
+            form.reset();
+            const newReviews = [reviewObj, ...reviews];
+            setReviews(newReviews);
+          }
+        });
+    }
+    else{
+      toast.error("Cannot add an empty review")
+    }
   };
   return (
-    <div>
-      <div className="p-5 md:p-10 ">
-        <img src={imgurl} alt="" className="w-11/12 md:w-2/5 mx-auto" />
-        <div className="w-11/12 md:w-1/2 mx-auto">
+    <div className="flex flex-col lg:flex-row">
+      <div className="p-5 md:p-10 lg:w-1/2 lg:sticky lg:top-5">
+        <img src={imgurl} alt="" className="w-11/12 mx-auto" />
+        <div className="w-11/12 mx-auto">
           <h2 className="text-3xl font-medium my-3">{name}</h2>
           <p className="text-lg">{intro}</p>
           <h3 className="text-xl font-medium text-orange-600 my-3">
@@ -60,14 +65,14 @@ const Service = () => {
           <p>{description}</p>
         </div>
       </div>
-      <div>
-        <div className="w-11/12 md:w-1/2 mx-auto">
-          <h2 className="text-3xl font-medium">Client Reviews</h2>
+      <div className="lg:w-1/2">
+        <div className="px-5 md:px-10 w-11/12 mx-auto my-10">
+          <h2 className="text-3xl font-medium my-5">Client Reviews</h2>
           {user?.uid ? (
             <form onSubmit={addReview}>
               <textarea
                 name="review"
-                className="w-full border-orange-600 block mb-5 md:w-1/2"
+                className="w-full border-orange-600 focus:border-orange-600 block mb-5"
               ></textarea>
               <button
                 type="submit"

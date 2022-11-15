@@ -9,6 +9,7 @@ import Register from '../pages/Register/Register'
 import MyReviews from "../pages/MyReviews/MyReviews";
 import AddService from "../pages/AddService/AddService";
 import UpdateReview from "../pages/UpdateReview/UpdateReview";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const routes = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
@@ -25,13 +26,13 @@ const routes = createBrowserRouter([
             path: '/services/:id', element: <Service/>, loader: ({params})=>fetch(`https://electman-server.vercel.app/services/${params.id}`)
         },
         {
-            path: '/my-reviews', element: <MyReviews/>
+            path: '/my-reviews', element: <PrivateRoute><MyReviews/></PrivateRoute>
         },
         {
-            path: '/update-review/:id', element: <UpdateReview/>, loader: ({params})=>fetch(`http://localhost:5000/review/${params.id}`)
+            path: '/update-review/:id', element: <PrivateRoute><UpdateReview/></PrivateRoute>, loader: ({params})=>fetch(`http://localhost:5000/review/${params.id}`)
         },
         {
-            path: '/add-service', element: <AddService/>
+            path: '/add-service', element: <PrivateRoute><AddService/></PrivateRoute>
         },
         {
             path: '/blogs', element:<Blogs/>
