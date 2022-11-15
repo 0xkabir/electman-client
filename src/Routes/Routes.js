@@ -10,6 +10,7 @@ import MyReviews from "../pages/MyReviews/MyReviews";
 import AddService from "../pages/AddService/AddService";
 import UpdateReview from "../pages/UpdateReview/UpdateReview";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const routes = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
@@ -42,6 +43,9 @@ const routes = createBrowserRouter([
         },
         {
             path: '/register', element: <Register></Register>
+        },
+        {
+            path: '*', element: <ErrorPage/>
         }
         
     ]}
