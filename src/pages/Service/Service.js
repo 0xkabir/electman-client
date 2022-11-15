@@ -21,10 +21,12 @@ const Service = () => {
     const form = event.target;
     const review = form.review.value;
     const reviewObj = {
+      time: Date.now(),
       userId: user.uid,
       userName: user.displayName,
       imgURL: user.photoURL,
       serviceId: _id,
+      serviceName: name,
       review: review,
     };
     console.log(reviewObj);
