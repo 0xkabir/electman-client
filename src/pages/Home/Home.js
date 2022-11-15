@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 import ServiceCard from "../shared/ServiceCard/ServiceCard";
 import CarouselSlider from "./Carousel/CarouselSlider";
 
 const Home = () => {
+  useTitle('Home')
   const [services, setServices] = useState([]);
   useEffect(() => {
     fetch("https://electman-server.vercel.app/services?count=3")

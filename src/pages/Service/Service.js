@@ -3,10 +3,12 @@ import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReviewItem from "./ReviewItem";
+import useTitle from '../../hooks/useTitle'
 
 const Service = () => {
   const { user } = useContext(AuthContext);
   const { _id, name, imgurl, price, intro, description } = useLoaderData();
+  useTitle(name)
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch(`https://electman-server.vercel.app/reviews/${_id}`)

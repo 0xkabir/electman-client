@@ -6,8 +6,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle'
 
 const Login = () => {
+    useTitle("Login")
     const {setUser, setLoading, userLogin, loginWithProvider} = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation();

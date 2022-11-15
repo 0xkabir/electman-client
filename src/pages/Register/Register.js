@@ -5,8 +5,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle'
 
 const Register = () => {
+    useTitle('Register')
     const {setLoading, createUserAccount, updateUserProfile, loginWithProvider} = useContext(AuthContext)
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
