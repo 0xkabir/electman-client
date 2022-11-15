@@ -10,7 +10,7 @@ const AddService = () => {
         const intro = form.intro.value;
         const description = form.description.value;
         const servcieObj = {name, imgurl, price, intro, description}
-        fetch('http://localhost:5000/services', {
+        fetch('https://electman-server.vercel.app/services', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

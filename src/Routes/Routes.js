@@ -30,7 +30,7 @@ const routes = createBrowserRouter([
             path: '/my-reviews', element: <PrivateRoute><MyReviews/></PrivateRoute>
         },
         {
-            path: '/update-review/:id', element: <PrivateRoute><UpdateReview/></PrivateRoute>, loader: ({params})=>fetch(`http://localhost:5000/review/${params.id}`)
+            path: '/update-review/:id', element: <PrivateRoute><UpdateReview/></PrivateRoute>, loader: ({params})=>fetch(`https://electman-server.vercel.app/review/${params.id}`)
         },
         {
             path: '/add-service', element: <PrivateRoute><AddService/></PrivateRoute>

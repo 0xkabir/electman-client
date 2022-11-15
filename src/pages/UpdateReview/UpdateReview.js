@@ -10,7 +10,7 @@ const UpdateReview = () => {
         const form = event.target;
         const updatedReview = form.review.value
         if(updatedReview.length !== 0){
-            fetch(`http://localhost:5000/reviews/${serviceReview._id}`,{
+            fetch(`https://electman-server.vercel.app/reviews/${serviceReview._id}`,{
             method: "PUT",
             headers: {
                 'content-type': "application/json"

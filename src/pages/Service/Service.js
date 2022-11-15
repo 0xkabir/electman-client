@@ -9,7 +9,7 @@ const Service = () => {
   const { _id, name, imgurl, price, intro, description } = useLoaderData();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`https://electman-server.vercel.app/reviews/${_id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -31,7 +31,7 @@ const Service = () => {
         review: review,
       };
       console.log(reviewObj);
-      fetch("http://localhost:5000/add-review", {
+      fetch("https://electman-server.vercel.app/add-review", {
         method: "POST",
         headers: {
           "content-type": "application/json",

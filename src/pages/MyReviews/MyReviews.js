@@ -7,14 +7,14 @@ const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/my-reviews?user=${user?.uid}`)
+    fetch(`https://electman-server.vercel.app/my-reviews?user=${user?.uid}`)
       .then((response) => response.json())
       .then((data) => {
         setReviews(data);
       });
   }, [user]);
   const deleteReview = (_id) => {
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://electman-server.vercel.app/reviews/${_id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
