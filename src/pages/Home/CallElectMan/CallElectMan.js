@@ -17,7 +17,7 @@ const CallElectMan = () => {
         <div className="flex justify-evenly">
           <button className="px-5 py-3 rounded bg-orange-600 hover:bg-white text-white hover:text-orange-600 border border-orange-600 font-medium flex items-center">
             <FaPhoneAlt className="mr-2" />
-            Give Us a Call
+            Give a Call
           </button>
           <button className="px-5 py-3 rounded bg-gray-700 hover:bg-white text-white hover:text-orange-600 border border-gray-700 hover:border-orange-600 font-medium flex items-center">
             <FaBolt className="mr-2 text-orange-600" />
