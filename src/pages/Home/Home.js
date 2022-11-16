@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
 import ServiceCard from "../shared/ServiceCard/ServiceCard";
+import About from "./About/About";
 import CarouselSlider from "./Carousel/CarouselSlider";
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
         <button className="px-3 py-1 mt-10 border font-medium rounded border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">View All</button>
       </Link>
       </div>
+      <About/>
     </div>
   );
 };

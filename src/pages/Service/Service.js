@@ -14,7 +14,6 @@ const Service = () => {
     fetch(`https://electman-server.vercel.app/reviews/${_id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setReviews(data);
       });
   }, [_id]);
@@ -86,7 +85,7 @@ const Service = () => {
           ) : (
             <h2 className="text-xl font-medium">
               Please{" "}
-              <Link to="/login" className="text-orange-600">
+              <Link to='/login' className="text-orange-600">
                 Login
               </Link>{" "}
               to add review
