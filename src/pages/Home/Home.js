@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
 import ServiceCard from "../shared/ServiceCard/ServiceCard";
 import About from "./About/About";
+import CallElectMan from "./CallElectMan/CallElectMan";
 import CarouselSlider from "./Carousel/CarouselSlider";
 
 const Home = () => {
@@ -28,6 +29,7 @@ const Home = () => {
       </Link>
       </div>
       <About/>
+      <CallElectMan/>
     </div>
   );
 };
