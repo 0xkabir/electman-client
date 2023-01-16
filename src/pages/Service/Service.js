@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Rating } from "react-simple-star-rating";
 import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
@@ -10,6 +11,11 @@ const Service = () => {
   const { _id, name, imgurl, price, intro, description } = useLoaderData();
   useTitle(name)
   const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0)
+  const handleRating = rate => {
+    console.log(rate)
+    setRating(rate)
+  }
   useEffect(() => {
     fetch(`https://electman-server.vercel.app/reviews/${_id}`)
       .then((response) => response.json())
@@ -30,6 +36,7 @@ const Service = () => {
         serviceId: _id,
         serviceName: name,
         review: review,
+        rating: rating
       };
       console.log(reviewObj);
       fetch("https://electman-server.vercel.app/add-review", {
@@ -44,6 +51,7 @@ const Service = () => {
           if (data.acknowledged) {
             toast.success("review added");
             form.reset();
+            setRating(0)
             const newReviews = [reviewObj, ...reviews];
             setReviews(newReviews);
           }
@@ -71,9 +79,10 @@ const Service = () => {
           <h2 className="text-3xl font-medium my-5">Client Reviews</h2>
           {user?.uid ? (
             <form onSubmit={addReview}>
+              <Rating onClick={handleRating} initialValue={rating} />
               <textarea
                 name="review"
-                className="w-full border-orange-600 focus:border-orange-600 block mb-5"
+                className="w-full border-orange-600 focus:border-orange-600 block my-5"
               ></textarea>
               <button
                 type="submit"
