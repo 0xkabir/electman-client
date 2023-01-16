@@ -84,7 +84,7 @@ const AddService = () => {
         <div className="form-control text-left w-11/12 md:w-3/4 lg:w-1/2 mx-auto">
           <label className="label text-gray-600">
             {" "}
-            <span>Thumbnail Image URL</span>
+            <span>Thumbnail Image</span>
           </label>
           <input
             type="file"
@@ -100,7 +100,7 @@ const AddService = () => {
         <div className="form-control text-left w-11/12 md:w-3/4 lg:w-1/2 mx-auto">
           <label className="label text-gray-600">
             {" "}
-            <span>Thumbnail Image URL</span>
+            <span>Full Size Image</span>
           </label>
           <input
             type="file"
